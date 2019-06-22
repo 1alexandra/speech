@@ -30,3 +30,12 @@ def melspectrogram(y):
     M = amp_to_db(np.dot(mel_basis, S)) - ref_db
     return normalize(M)
 
+
+def extract_mfcc(sound, sampling_rate=SAMPLE_RATE, shift=32., L=128., mel_coefs=120, mfcc_coefs=12, alpha=0.9, eps=1e-9):
+    mfcc = librosa.feature.mfcc(y=sound, sr=sampling_rate, n_mfcc=mfcc_coefs)
+    energy = librosa.feature.rms(sound)
+    mfcc_energy = np.vstack((mfcc, energy))
+    dx = librosa.feature.delta(mfcc_energy, order=1, width=3)
+    d2x = librosa.feature.delta(mfcc_energy, order=2, width=3)
+    res_features = np.vstack((mfcc_energy, dx, d2x)).T
+    return res_features.astype(np.float32)
