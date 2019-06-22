@@ -5,8 +5,13 @@ import numpy as np
 
 import os
 import glob
+import re
 
 from hyperparameters import *
+
+
+def match(regexp, s):
+    return re.match(regexp, s) is not None
 
 
 # class VoxCelebDataset(Dataset):
@@ -37,7 +42,7 @@ from hyperparameters import *
 
 
 class MelCelebDataset(Dataset):
-    def __init__(self, root, type, transform=None):
+    def __init__(self, root, type, transform=None, user_regexp=None):
         super(MelCelebDataset, self).__init__()
         
         assert type in ('train', 'test', 'val', 'test_new')
@@ -49,6 +54,8 @@ class MelCelebDataset(Dataset):
 
         pattern = os.path.join(root, type, '*', '*.npy')
         self.filenames = glob.glob(pattern)
+        if user_regexp is not None:
+            self.filenames = list(filter(lambda x: match(os.path.join(root, type, user_regexp, ''), x), self.filenames))
 
     def __getitem__(self, idx):
         filename = self.filenames[idx]
