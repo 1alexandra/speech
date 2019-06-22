@@ -28,7 +28,7 @@ cd ../
 
 3. extract mel features:
 ```
-python extract_mel.py
+python cook_data.py
 ```
 
 4. if you don't wanna to train VGGish, load pretrained weights for it [here](https://drive.google.com/open?id=1mhqXZ8CANgHyepum7N4yrjiyIg6qaMe6) and place it to `./models`
