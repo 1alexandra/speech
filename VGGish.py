@@ -92,13 +92,14 @@ def vggish(include_classifier=False, pretrained=False):
     model = VGGish(include_classifier=include_classifier)
 
     if pretrained:
+        # weights for tf pretrained model
         file = h5py.File('./models/vggish_audioset_weights.h5', 'r')
-
         weights = list(flatten(file))
+
+        # swap bias and kernels
         weights[::2], weights[1::2] = weights[1::2], weights[::2]
 
         for param, weight in zip(model.parameters(), weights):
             param.data = torch.Tensor(np.array(weight).T)
-
 
     return model
