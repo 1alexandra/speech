@@ -1,5 +1,8 @@
-DATA_PATH = './data/wav/'
+RAW_DATA_PATH = './data/wav/'
+MEL_DATA_PATH = './data/mel/'
+
 SAMPLE_RATE = 16000
+
 INPUT_SIZE = 39
 NUM_LAYERS = 1
 NUM_FRAMES = 63000
