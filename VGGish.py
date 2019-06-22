@@ -10,7 +10,7 @@ class VGGish(nn.Module):
     def __init__(self, num_bands=64, num_frames=96, embedding_size=128,
                  include_classifier=False):
 
-        """
+        """ 
 
         :param num_bands: int, default 64
             number of bands in input mel-spectre
