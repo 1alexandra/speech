@@ -33,6 +33,11 @@ python cook_data.py
 
 4. if you don't wanna to train VGGish, load pretrained weights for it [here](https://drive.google.com/open?id=1mhqXZ8CANgHyepum7N4yrjiyIg6qaMe6) and place it to `./models`
 
+...or you can simply run this command:
+```
+sh ./get_model.sh
+```
+
 5. ...
 
 6. PROFIT!!
