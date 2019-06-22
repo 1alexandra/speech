@@ -47,7 +47,7 @@ class MelCelebDataset(Dataset):
         self.person_ids = os.listdir(os.path.join(root, type))
         self.id2label = {person_id: int(person_id) for person_id in self.person_ids}
 
-        pattern = os.path.join(root, type, '*.npy')
+        pattern = os.path.join(root, type, '*', '*.npy')
         self.filenames = glob.glob(pattern)
 
     def __getitem__(self, idx):
