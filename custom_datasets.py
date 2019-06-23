@@ -45,7 +45,7 @@ class MelCelebDataset(Dataset):
         self.person_ids = os.listdir(root)
         self.id2label = {person_id: label for label, person_id in enumerate(self.person_ids)}
 
-        pattern = os.path.join(root, '*', '*.wav')
+        pattern = os.path.join(root, '*', '*.npy')
         self.filenames = glob.glob(pattern)
 
     def __getitem__(self, idx):
@@ -54,7 +54,7 @@ class MelCelebDataset(Dataset):
 
         spectrogram = torch.load(filename)
         if self.transform is not None:
-            spectrogram = self.transform(record)
+            spectrogram = self.transform(spectrogram)
 
         return spectrogram, person_label
 
