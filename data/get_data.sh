@@ -9,4 +9,3 @@ for part in a b c d; do
 done
 cat vox1_dev* > vox1_dev_wav.zip
 rm vox1_dev_wav_part*
-

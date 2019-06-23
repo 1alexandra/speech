@@ -71,7 +71,7 @@ class VGGish(nn.Module):
             )
 
     def forward(self, input):
-        batch_size, num_bands, seq_len = input.size
+        batch_size, num_bands, seq_len = input.shape
 
         input = input.unsqueeze(1)
         # [batch_size, embedding=1, num_bands=64, seq_len=96]
