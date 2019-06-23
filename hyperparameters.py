@@ -1,14 +1,16 @@
 RAW_DATA_PATH = './data/wav/'
+NEAT_DATA_PATH = './data/neat/'
 MEL_DATA_PATH = './data/mel/'
 
 SAMPLE_RATE = 16000
 
 INPUT_SIZE = 39
 NUM_LAYERS = 1
-NUM_FRAMES = 63000
+NUM_FRAMES = 63000 * 3
 TRAIN_SIZE = 0.7
 BATCH_SIZE = 32
 N_EPOCHS = 1
+N_USERS = 100
 
 num_frequencies = 1025  # количество частот, которые будем извлекать
 frame_length = 0.025     # длина окна STFT (в секундах)
