@@ -85,7 +85,7 @@ class VGGish(nn.Module):
 
             return self.classifier(input)
 
-        return input.mean(dim=-1)
+        return input.mean(dim=[2, 3])
 
 
 def vggish(include_classifier=False, pretrained=False):
@@ -100,6 +100,8 @@ def vggish(include_classifier=False, pretrained=False):
         weights[::2], weights[1::2] = weights[1::2], weights[::2]
 
         for param, weight in zip(model.parameters(), weights):
+            if len(weight.shape) == 4:
+                weight = np.array(weight).swapaxes(0, 1)
             param.data = torch.Tensor(np.array(weight).T)
 
     return model
