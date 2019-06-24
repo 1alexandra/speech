@@ -39,3 +39,21 @@ def extract_mfcc(sound, sampling_rate=SAMPLE_RATE, shift=32., L=128., mel_coefs=
     d2x = librosa.feature.delta(mfcc_energy, order=2, width=3)
     res_features = np.vstack((mfcc_energy, dx, d2x)).T
     return res_features.astype(np.float32)
+
+
+def downsample_whiten(batch, rate=1, rms=0.038021):
+    """This function whitens a batch so each sample has 0 mean and the same root mean square amplitude i.e. volume."""
+    if len(batch.shape) != 3:
+        raise(ValueError, 'Input must be a 3D array of shape (batch_size, n_timesteps, 1).')
+    
+    batch = batch[:, ::rate, :]
+    
+    # Subtract mean
+    sample_wise_mean = batch.mean(axis=1)
+    whitened_batch = batch - np.tile(sample_wise_mean, (1, 1, batch.shape[1])).transpose((1, 2, 0))
+
+    # Divide through
+    sample_wise_rescaling = rms / np.sqrt(np.power(batch, 2).mean(axis=1))
+    whitened_batch = whitened_batch * np.tile(sample_wise_rescaling, (1, 1, batch.shape[1])).transpose((1, 2, 0))
+
+    return whitened_batch

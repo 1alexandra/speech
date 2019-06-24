@@ -21,4 +21,8 @@ def flatten(x):
         else:
             for v in flatten(v):
                 yield v
-                
+
+
+def get_X(dataset):
+    X, y = list(zip(*[(X.numpy(), y) for X, y in dataset]))
+    return np.stack(X), np.array(y)

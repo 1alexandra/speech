@@ -1,15 +1,16 @@
-RAW_DATA_PATH = './data/wav/'
+TRAIN_DATA_PATH = './data/LibriSpeech/train-clean-100' # './data/wav/'
+TEST_DATA_PATH = './data/LibriSpeech/test-clean'
 NEAT_DATA_PATH = './data/neat/'
 MEL_DATA_PATH = './data/mel/'
+EMB_DATA_PATH = './data/emb/'
 
 SAMPLE_RATE = 16000
 
 INPUT_SIZE = 39
 NUM_LAYERS = 1
-NUM_FRAMES = 63000 * 3
-TRAIN_SIZE = 0.7
+NUM_FRAMES = 48000
+TRAIN_SIZE = 0.8
 BATCH_SIZE = 32
-N_EPOCHS = 1
 N_USERS = 100
 
 num_frequencies = 1025  # количество частот, которые будем извлекать
