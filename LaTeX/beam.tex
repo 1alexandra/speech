@@ -77,11 +77,66 @@ cepstral coefficients}
 
 \begin{frame}
 \frametitle{Эксперименты}
+
+Датасет: LibriSpeech
+\begin{itemize}
+\item train-clean-100 -- 100 часов <<чистой>> английской речи, 250 различных людей;
+\item train-clean-360 -- 360 часов <<чистой>> английской речи;
+\item test-clean -- 40 различных пользователей.
+\end{itemize}
+
+Идея: будем использовать кодировщик из предобученной <<сиамской>> сети для преобразования признакового пространства.
+
 \end{frame}
 
+\begin{frame}
+\frametitle{Эксперименты. Эмбеддинги}
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.40]{test_emb.png}
+\caption{Эмбеддинги тестовых записей}
+\label{}
+\end{figure}
+
+\end{frame}
 
 \begin{frame}
-\frametitle{Демонстрация?}
+\frametitle{Эксперименты. K-shot learning}
+
+Как точно мы можем идентифицировать человека, если до этого наблюдали не более $k$ элементов каждого класса? Классификация -- KNN.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.32]{k-shot.png}
+\caption{Влияние $k$ на качество модели}
+\label{}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Эксперименты. Transfer Learning}
+
+\begin{table}[h!]
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+	Алгоритм & Accuracy \\
+\hline
+	KNN на эмбеддингах & 94.4\% \\
+\hline
+	KNN на усреднённых эмбеддингах & 83.3\% \\
+\hline
+	Случайный лес & 93.1\% \\
+\hline
+	Градиентный бустинг & 91.2\% \\
+\hline
+\end{tabular}
+\caption{Сравнение моделей}
+\end{center}
+\end{table}
 \end{frame}
 
 
@@ -89,7 +144,7 @@ cepstral coefficients}
 \frametitle{Заключение}
 Мы изучили существующие методы решения задачи распознавания спикера. Мы попробовали несколько методов распознавания на нескольких наборах данных. Получили опыт использования предобученных нейронных сетей. \\
 \vspace{1em}
-Наилучший результат получен с использованием siamese networks, точность классификации на наборе данных LibriSpeech $ ??? \%$!\\
+Наилучший результат получен с использованием siamese networks, точность классификации на наборе данных LibriSpeech $ 94.4 \%$!\\
 \vfill
 \textbf{Вклад участников:}
 \begin{tabular}{ll}
@@ -98,8 +153,6 @@ cepstral coefficients}
 Тимур & данные: предобработка и эксперименты
 \end{tabular}
 \end{frame}
-
-
 
 \end{document}
 
