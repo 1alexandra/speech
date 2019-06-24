@@ -1,0 +1,105 @@
+\documentclass[11pt]{beamer}
+\usetheme{Warsaw}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Журавская, Камалбеков, Козловцев \\ 517 группа}
+\title{Speaker recognition}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+%\logo{} 
+\institute{Московский Государственный Университет имени М.В.Ломоносова \\
+Факультет вычислительной математики и кибернетики \\
+Кафедра математических методов прогнозирования }
+
+
+\date{24 июня 2019 г.} 
+
+
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Постановка задачи}
+\textbf{Дано:} образцы голосов $N$ спикеров; \\ 
+Обучающая и тестовая выборки; \\
+У каждого спикера уникальный $id$.\\
+\vspace{2em}
+\textbf{Найти:} для каждого образца в тестовой выборке либо подобрать $id$ спикера, либо определить, что таких $id$ в обучающей выборке нет.
+\end{frame}
+
+\begin{frame}
+\frametitle{Наивный алгоритм}
+\begin{itemize}
+\item Признаки: mfcc из второго задания! 
+\item Разделим пространство признаков на кластеры: K-Means!
+\item Найдем порог принадлежности кластеру: если расстояние от объекта до всех центров кластеризации больше порога, то считаем, что спикер новый, т.е. его не было в обучающей выборке.
+\end{itemize}
+\vspace{1em}
+Детали: Количество признаков 24. Количество кластеров $4N$*. \\
+Проблемы: плохая разделимость, низкая скорость работы
+\vfill
+*\href{https://pdfs.semanticscholar.org/32c4/db25607bd52a6d0aeb5498ec9c8d564e6d2e.pdf?_ga=2.263177676.1944660485.1561369829-1562048709.1560510651}{Speaker identification using mel frequency
+cepstral coefficients}
+\end{frame}
+
+\begin{frame}
+\frametitle{VGGist}
+\begin{itemize}
+\item Данные: \href{http://www.robots.ox.ac.uk/~vgg/data/voxceleb/}{VoxCeleb} аудио + видео!
+\item Предобработка: ....
+\item Сеть: \href{https://github.com/tensorflow/models/tree/master/research/audioset/vggish}{VGGish на GitHub}
+\end{itemize}
+Проблемы: tf -> torch, свою сеть обучать долго: используем предобученную!\\
+\vfill
+Итог: точность $\approx 20\%$ на 100 спикерах с наибольшим количеством образцов голоса.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Мы не сдаёмся}
+\href{https://medium.com/analytics-vidhya/building-a-speaker-identification-system-from-scratch-with-deep-learning-f4c4aa558a56}{Building a Speaker Identification System from Scratch with Deep Learning}
+\begin{itemize}
+\item Данные: \href{http://www.openslr.org/12/}{LibriSpeech}
+\item Архитектура:
+\end{itemize}
+\includegraphics[width = \linewidth]{siamese.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Эксперименты}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Демонстрация?}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Заключение}
+Мы изучили существующие методы решения задачи распознавания спикера. Мы попробовали несколько методов распознавания на нескольких наборах данных. Получили опыт использования предобученных нейронных сетей. \\
+\vspace{1em}
+Наилучший результат получен с использованием siamese networks, точность классификации на наборе данных LibriSpeech $ ??? \%$!\\
+\vfill
+\textbf{Вклад участников:}
+\begin{tabular}{ll}
+Саша & идея, наивный алгоритм, презентация \\
+Костя & сеть: выбор архитектуры, перенос весов \\
+Тимур & данные: предобработка и эксперименты
+\end{tabular}
+\end{frame}
+
+
+
+\end{document}
+

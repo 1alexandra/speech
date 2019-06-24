@@ -6,6 +6,8 @@ SPEAKER IDENTIFICATION USING MEL FREQUENCY CEPSTRAL COEFFICIENTS https://habr.co
 
 ATTENTION-BASED MODELS FOR TEXT-DEPENDENT SPEAKER VERIFICATION https://arxiv.org/pdf/1710.10470.pdf
 
+Building a Speaker Identification System from Scratch with Deep Learning https://medium.com/analytics-vidhya/building-a-speaker-identification-system-from-scratch-with-deep-learning-f4c4aa558a56
+
 Dataset: 
 
 VoxCeleb http://www.robots.ox.ac.uk/~vgg/data/voxceleb/
